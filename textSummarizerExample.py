@@ -110,4 +110,3 @@ def _run_article_summary(article):
 if __name__ == '__main__':
     summary_results = _run_article_summary(article_content)
     print(summary_results)
-    
