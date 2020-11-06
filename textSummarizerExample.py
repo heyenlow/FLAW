@@ -1,3 +1,7 @@
+#TAKEN FROM https://blog.floydhub.com/gentle-introduction-to-text-summarization-in-machine-learning/
+#       A Gentle Introduction to Text Summarization in Machine Learning
+
+
 #importing libraries
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
