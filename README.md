@@ -1,6 +1,8 @@
 # TACS
+Terms and Conditions Summarization
 
-terms and conditions summarization
+# TOSS
+Terms of Service Summarization
 
 unless you have better name
 
