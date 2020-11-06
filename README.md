@@ -1,5 +1,5 @@
 # FLAW
-* Free Legal Article Writeup *
+**Free Legal Article Writeup**
 
 unless you have better name
 
