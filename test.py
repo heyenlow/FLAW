@@ -3,6 +3,8 @@ import tensorflow as tf
 import nltk as nltk
 from tensorflow import keras
 from tensorflow.keras import layers
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
 import re
 
 
@@ -38,8 +40,6 @@ def extract_sentences(file_name):
 def remove_stop_words(sents, stop_words):
     for word in stop_words:
         sents = re.sub("\s*\\b" + word + "\\b", '', sents)
-        
-    print(sents)
     return sents
 
 
@@ -51,11 +51,39 @@ def print_Sentences(sents):
     return
 
 def print_Dict(dictionary):
-    for word in dictionary:
+    for word in sorted (dictionary):
         print(f"{word:<15} {dictionary[word]}")
     return
 
-print_Dict(count_words(extract_sentences("inputTest.txt")))
-print_Sentences(extract_sentences("inputTest.txt"))
 
+def weight_Dict(dictionaryOfOccurences):
+    weights = {}
+    max = -1
+    for word in dictionaryOfOccurences:
+        if dictionaryOfOccurences[word] > max:
+            max = dictionaryOfOccurences[word]
+
+    for word in dictionaryOfOccurences:
+        weights[word] = dictionaryOfOccurences[word] / max
+
+    return weights
+
+
+wordCount = count_words(extract_sentences("inputTest.txt"))
+sentences = extract_sentences("inputTest.txt")
+weight = weight_Dict(wordCount)
+print("----SENTENCES----")
+print_Sentences(sentences)
+print("----WORD COUNT----")
+print_Dict(wordCount)
+print("----WORD WEIGHTS----")
+print_Dict(weight)
 #this is a test another
+
+
+
+
+#KERAS
+
+model = Sequential()
+model.add(Dense(len(wordCount), input_dim = 8, activation='relu'))
