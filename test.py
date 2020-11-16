@@ -26,10 +26,10 @@ def count_words(sents):
 def extract_sentences(file_name):
     stopWords = ['is', 'and']
     textFile = open(file_name, "r")
-    textTest = textFile.read()
+    textTest = textFile.read().lower()
     cleanText = remove_stop_words(textTest, stopWords)
     l = []
-    for sentences in re.split("\s*\.\s*", textTest):
+    for sentences in re.split("\s*\.\s*", cleanText):
         l.append(sentences)        
     return l
 
@@ -37,8 +37,9 @@ def extract_sentences(file_name):
 #stop_words = list of stop words
 def remove_stop_words(sents, stop_words):
     for word in stop_words:
-        sents = re.sub("\s*\b" + word + "\b", ' ', sents)
-
+        sents = re.sub("\s*\\b" + word + "\\b", '', sents)
+        
+    print(sents)
     return sents
 
 
