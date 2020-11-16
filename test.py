@@ -3,6 +3,7 @@ import tensorflow as tf
 import nltk as nltk
 from tensorflow import keras
 from tensorflow.keras import layers
+import re
 
 
 print(np.version)
@@ -29,9 +30,11 @@ def extract_sentences(file_name):
     textFile = open(file_name, "r")
     textTest = textFile.read()
     l = ['']
-    for sentences in textTest.split("."):
-        l.append(sentences)
+    for sentences in re.split("\s*\.\s*", textTest):
+        l.append(sentences)        
     return l
+
+
 
 def print_Sentences(l):
     count = 0
