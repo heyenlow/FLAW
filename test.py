@@ -16,7 +16,10 @@ textTest = textFile.read()
 def count_words(text):
     words = {"test" : 0}
     for word in text.split():
-        words[word] = words[word] + 1 
+        if word in words:
+            words[word] = words[word] + 1 
+        else:
+            words[word] = 1
     return words
 
 def print_Dict(dictionary):
