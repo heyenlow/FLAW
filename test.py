@@ -24,7 +24,7 @@ def count_words(text):
 
 def print_Dict(dictionary):
     for word in dictionary:
-        print(word + dictionary[word])
+        print(f"{word} : {dictionary[word]}")
     return
 
 print(print_Dict(count_words(textTest)))
