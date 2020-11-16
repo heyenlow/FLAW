@@ -9,14 +9,11 @@ import re
 print(np.version)
 print(tf.version)
 
-
-
-
 #creates a dictionary of words and the number of their occurances
-def count_words(l):
-    words = {"------------" : 0}
-    for sentence in l:
-        for word in sentence.split():
+def count_words(sents):
+    words = {}
+    for sent in sents:
+        for word in sent.split():
             if word in words:
                 words[word] = words[word] + 1 
             else:
@@ -27,19 +24,29 @@ def count_words(l):
 #puts all sentences into a list
 #assuming test is only sentences that end in periods
 def extract_sentences(file_name):
+    stopWords = ['is', 'and']
     textFile = open(file_name, "r")
     textTest = textFile.read()
-    l = ['']
+    cleanText = remove_stop_words(textTest, stopWords)
+    l = []
     for sentences in re.split("\s*\.\s*", textTest):
         l.append(sentences)        
     return l
 
+#sents = list of sentences
+#stop_words = list of stop words
+def remove_stop_words(sents, stop_words):
+    for word in stop_words:
+        sents.replace(word, '')
+
+    sents.replace("is", '')
+    return sents
 
 
-def print_Sentences(l):
+def print_Sentences(sents):
     count = 0
-    for sentences in l:
-        print(f"{count} : {sentences}")
+    for sent in sents:
+        print(f"{count} : {sent}")
         count += 1
     return
 
