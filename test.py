@@ -19,5 +19,10 @@ def count_words(text):
         words[word] = words[word] + 1 
     return words
 
-print(count_words(textTest))
+def print_Dict(dictionary):
+    for word in dictionary:
+        print(word + dictionary[word])
+    return
+
+print(print_Dict(count_words(textTest)))
 
