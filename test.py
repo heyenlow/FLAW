@@ -37,7 +37,7 @@ def extract_sentences(file_name):
 #stop_words = list of stop words
 def remove_stop_words(sents, stop_words):
     for word in stop_words:
-        sents = re.sub(f"\s*\b{word}\b", ' ', sents)
+        sents = re.sub("\s*\b" + word + "\b", ' ', sents)
 
     return sents
 
