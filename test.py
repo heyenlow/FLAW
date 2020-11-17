@@ -1,6 +1,7 @@
 import numpy as np
 import tensorflow as tf
 import nltk as nltk
+import string
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
 from tensorflow import keras
@@ -8,9 +9,6 @@ from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 import re
-
-nltk.download('stopwords')
-nltk.download('punkt')
 
 print(np.version)
 print(tf.version)
@@ -38,7 +36,7 @@ def extract_sentences(file_name):
     for sent in sentList:
         sl = []
         for word in sent:
-            if word not in stop_words:
+            if word not in stop_words and word not in string.punctuation:
                 sl.append(word)
         l.append(sl)
 
