@@ -71,9 +71,8 @@ def weight_Dict(dictionaryOfOccurences):
 
     return weights
 
-
-wordCount = count_words(extract_sentences("inputTest.txt"))
-sentences = extract_sentences("inputTest.txt")
+sentences = extract_sentences("longTextTest.txt")
+wordCount = count_words(sentences)
 weight = weight_Dict(wordCount)
 print("----SENTENCES----")
 print_Sentences(sentences)
