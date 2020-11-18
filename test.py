@@ -7,6 +7,8 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 import re
 
+nltk.download('stopwords')
+nltk.download('punkt')
 
 print(np.version)
 print(tf.version)
@@ -15,7 +17,7 @@ print(tf.version)
 def count_words(sents):
     words = {}
     for sent in sents:
-        for word in sent.split():
+        for word in sent:
             if word in words:
                 words[word] = words[word] + 1 
             else:
@@ -26,27 +28,25 @@ def count_words(sents):
 #puts all sentences into a list
 #assuming test is only sentences that end in periods
 def extract_sentences(file_name):
-    stopWords = ['is', 'and']
+    stop_words = set(stopwords.words('english'))
     textFile = open(file_name, "r")
-    textTest = textFile.read().lower()
-    cleanText = remove_stop_words(textTest, stopWords)
+    sentList = [word_tokenize(sent) for sent in sent_tokenize(textFile.read().lower())]
+
     l = []
-    for sentences in re.split("\s*\.\s*", cleanText):
-        l.append(sentences)        
+    for sent in sentList:
+        sl = []
+        for word in sent:
+            if word not in stop_words and word not in string.punctuation:
+                sl.append(word)
+        l.append(sl)
+
     return l
-
-#sents = list of sentences
-#stop_words = list of stop words
-def remove_stop_words(sents, stop_words):
-    for word in stop_words:
-        sents = re.sub("\s*\\b" + word + "\\b", '', sents)
-    return sents
-
 
 def print_Sentences(sents):
     count = 0
+    s = ' '
     for sent in sents:
-        print(f"{count} : {sent}")
+        print(f"{count} : {s.join(sent)}")
         count += 1
     return
 
