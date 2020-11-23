@@ -10,6 +10,9 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 import re
 
+nltk.download('stopwords')
+nltk.download('punkt')
+
 print(np.version)
 print(tf.version)
 
@@ -24,6 +27,12 @@ def count_words(sents):
                 words[word] = 1
     return words
 
+def remove_quotes(txt):
+    s = ''
+    newTxt = re.split("\".*\"", txt)
+    newTxt = s.join(newTxt)
+
+    return newTxt
 
 #puts all sentences into a list
 #assuming test is only sentences that end in periods
@@ -42,9 +51,6 @@ def extract_sentences(file_name):
 
     return l
 
-#sents = list of sentences
-#stop_words = list of stop words
-    
 def print_Sentences(sents):
     count = 0
     s = ' '
@@ -58,7 +64,6 @@ def print_Dict(dictionary):
         print(f"{word:<15} {dictionary[word]}")
     return
 
-
 def weight_Dict(dictionaryOfOccurences):
     weights = {}
     max = -1
@@ -71,9 +76,11 @@ def weight_Dict(dictionaryOfOccurences):
 
     return weights
 
-sentences = extract_sentences("longTextTest.txt")
+
+sentences = extract_sentences("inputTest.txt")
 wordCount = count_words(sentences)
 weight = weight_Dict(wordCount)
+
 print("----SENTENCES----")
 print_Sentences(sentences)
 print("----WORD COUNT----")
@@ -81,3 +88,11 @@ print_Dict(wordCount)
 print("----WORD WEIGHTS----")
 print_Dict(weight)
 #this is a test another
+
+print('\n' + remove_quotes("\"hello\" This is a test 'mason laferney'"))
+
+
+#KERAS
+
+model = Sequential()
+model.add(Dense(len(wordCount), input_dim = 8, activation='relu'))
