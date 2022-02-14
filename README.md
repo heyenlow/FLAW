@@ -1,6 +1,9 @@
 # FLAW
-### Free Legal Article Writeup
+## Free Legal Article Writeup
 #### Konrad Heyen & Mason LaFerney
+
+### TL;DR
+The aim of this project is to create a Terms and Services summarization application using artificial intelligence to determine important information contained in a document.
 
 
 ### Proposal
